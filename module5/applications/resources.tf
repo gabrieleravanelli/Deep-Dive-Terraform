@@ -36,7 +36,7 @@ resource "aws_launch_configuration" "webapp_lc" {
 
 resource "aws_elb" "webapp_elb" {
   name    = "ddt-webapp-elb"
-  subnets = ["${data.terraform_remote_state.networking.outputs.public_subnets}"]
+  subnets = ["${data.terraform_remote_state.networking.outputs.public_subnets[0]}"]
 
   listener {
     instance_port     = 80
@@ -166,7 +166,7 @@ resource "aws_eip" "bastion" {
 
 resource "aws_db_subnet_group" "db_subnet_group" {
   name       = "${terraform.workspace}-ddt-rds-subnet-group"
-  subnet_ids = ["${data.terraform_remote_state.networking.outputs.private_subnets}"]
+  subnet_ids = ["${data.terraform_remote_state.networking.outputs.private_subnets[0]}"]
 }
 
 resource "aws_db_instance" "rds" {
