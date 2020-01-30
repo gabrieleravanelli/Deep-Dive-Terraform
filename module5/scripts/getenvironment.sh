@@ -10,6 +10,6 @@ set -e
 eval "$(jq -r '@sh "WORKSPACE=\(.workspace) PROJECTCODE=\(.projectcode) URL=\(.url)"')"
 
 # Placeholder for whatever data-fetching logic your script implements
-#curl --header "querytext: $WORKSPACE-$PROJECTCODE" $URL
+curl --header "querytext: $WORKSPACE-$PROJECTCODE" $URL
 
-curl --header "querytext: development-8675309" https://iucfnt1s86.execute-api.us-west-2.amazonaws.com/prod/tdd_ddb_query
+#curl --header "querytext: development-8675309" https://iucfnt1s86.execute-api.us-west-2.amazonaws.com/prod/tdd_ddb_query
