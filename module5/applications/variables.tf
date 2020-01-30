@@ -12,7 +12,7 @@ variable "aws_secret_key" {}
 
 #Web front end variables
 variable "key_name" {
-  default = "tf"
+  default = "tf_oregon"
 }
 
 variable "ip_range" {
