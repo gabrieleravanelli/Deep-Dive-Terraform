@@ -6,7 +6,7 @@ variable "aws_access_key" {}
 variable "aws_secret_key" {}
 
 variable "aws_networking_bucket" {
-  default = "ddt-networking"
+  default = "ddt-networking-gabry"
 }
 
 variable "aws_application_bucket" {
