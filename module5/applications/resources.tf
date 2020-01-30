@@ -36,7 +36,7 @@ resource "aws_launch_configuration" "webapp_lc" {
 
 resource "aws_elb" "webapp_elb" {
   name    = "ddt-webapp-elb"
-  subnets = ["${data.terraform_remote_state.networking.outputs.public_subnets[0]}"]
+  subnets = "${data.terraform_remote_state.networking.outputs.public_subnets}"
 
   listener {
     instance_port     = 80
@@ -63,7 +63,7 @@ resource "aws_autoscaling_group" "webapp_asg" {
     create_before_destroy = true
   }
 
-  vpc_zone_identifier   = ["${data.terraform_remote_state.networking.outputs.public_subnets}"]
+  vpc_zone_identifier   = "${data.terraform_remote_state.networking.outputs.public_subnets}"
   name                  = "ddt_webapp_asg"
   max_size              = "${data.external.configuration.result.asg_max_size}"
   min_size              = "${data.external.configuration.result.asg_min_size}"
@@ -166,7 +166,7 @@ resource "aws_eip" "bastion" {
 
 resource "aws_db_subnet_group" "db_subnet_group" {
   name       = "${terraform.workspace}-ddt-rds-subnet-group"
-  subnet_ids = ["${data.terraform_remote_state.networking.outputs.private_subnets[0]}"]
+  subnet_ids = "${data.terraform_remote_state.networking.outputs.private_subnets}"
 }
 
 resource "aws_db_instance" "rds" {
